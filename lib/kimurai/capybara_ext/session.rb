@@ -60,13 +60,12 @@ module Capybara
     def destroy_driver!
       if @driver
         begin
-          @driver.quit
+          quit
         # handle Net::ReadTimeout error for Selenium like drivers
         rescue Net::ReadTimeout => e
-          @driver.quit
+          quit
         end
 
-        @driver = nil
         logger.info "Browser: driver #{mode} has been destroyed"
       else
         logger.warn "Browser: driver #{mode} is not present"
